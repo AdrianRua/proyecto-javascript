@@ -1,6 +1,6 @@
 //Pagina de basquet
 
-let Basquet = prompt("¿Quieres saber sobre basquet?").toLowerCase();
+/*let Basquet = prompt("¿Quieres saber sobre basquet?").toLowerCase();
 
 if (Basquet != "no") {
     alert("Genial, descubre el numero según la posicion de campo");
@@ -80,4 +80,66 @@ filtrarJugador().forEach(elemento => {
     edad: ${elemento.edad}
     nacionalidad: ${elemento.nacionalidad}
     `)
-});
+});*/
+
+
+
+/*let lista = document.getElementById("lista-de-jugadores");
+console.log(lista);
+
+lista.innerHTML = "<li id=`elemento-lista`>neymar</li>"
+
+let productos =["neymar", "messi", "cristiano"]*/
+
+
+const contenedorProductos = document.getElementById('contenedor-productos');
+
+const Productos = [
+    { id: 1, nombre: "whisky", precio: 4500, emoji: '🥃' },
+    { id: 2, nombre: "Coca", precio: 2200, emoji: '🥤' },
+    { id: 3, nombre: "Cerveza", precio: 2500, emoji: '🍺' },
+    { id: 4, nombre: "Hamburguesa", precio: 4000, emoji: '🍔' },
+    { id: 5, nombre: "Super pancho", precio: 2000, emoji: '🌭' },
+]
+const carrito = [];
+
+
+
+
+function mostrarProductos() {
+    Productos.forEach(producto => {
+        contenedorProductos.innerHTML += `
+            <div class="prod-container">
+                <h1 id="emoji">${producto.emoji}</h1>
+                <h2>${producto.nombre}</h2>
+                <p>$${producto.precio}</p>
+                <button id="${producto.id}" class="agregar">Agregar al carrito</button>
+            </div>
+        `;
+    });
+}
+
+
+
+
+    const agregarAlCarrito = (e) => {
+    if (e.target.classList.contains('agregar')) {
+        const id = e.target.id;
+        const producto = productos.find(producto => producto.id == id);
+        carrito.push(producto);
+        mostrarcarrito();
+    }
+}
+const mostrarCarrito = () => {
+    const contenedorCarrito = document.getElementById('contenedor-carrito');
+    contenedorCarrito.innerHTML = '<h2>Agregados</h2>';
+    carrito.forEach(producto => {
+        contenedorCarrito.innerHTML += `
+            <p>${producto.nombre} \t $${producto.precio}</p>
+        `;
+    });
+}
+
+document.addEventListener('DOMContentLoaded', mostrarProductos);
+
+document.addEventListener('click', agregarAlCarrito);
