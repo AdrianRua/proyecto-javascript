@@ -84,15 +84,121 @@ filtrarJugador().forEach(elemento => {
 
 
 
-/*let lista = document.getElementById("lista-de-jugadores");
-console.log(lista);
 
-lista.innerHTML = "<li id=`elemento-lista`>neymar</li>"
-
-let productos =["neymar", "messi", "cristiano"]*/
 
 
 const contenedorProductos = document.getElementById('contenedor-productos');
+
+const productos = [
+    {id: 1, nombre: "Celtics", precio: 124, img: "img/boston.avif"},
+    {id: 2, nombre: "Bulls", precio: 260, img: "img/bulls.avif"},
+    {id: 3, nombre: "Warriors", precio: 160, img: "img/golden warriors.webp"},
+    {id: 4, nombre: "Lakers", precio: 99, img: "img/lebron james.avif"},
+    {id: 5, nombre: "Spurs", precio: 108, img: "img/spurs.avif"},
+]
+
+const carrito = [];
+
+
+
+const mostrarProductos = () => {
+    productos.forEach(producto => {
+        contenedorProductos.innerHTML += `
+            <div class="prod-container">
+                <img src="${producto.img}" />
+                <h2>${producto.nombre}</h2>
+                <p>$${producto.precio}</p>
+                <button id="${producto.id}" class="agregar">Agregar al carrito</button>
+            </div>
+        `;
+    });
+}
+
+
+
+const agregarAlCarrito = e => {
+    if (e.target.classList.contains('agregar')) {
+        const id = e.target.id;
+        const producto = productos.find(producto => producto.id == id);
+        carrito.push(producto);
+        mostrarCarrito();
+    }
+}
+
+
+const mostrarCarrito = () => {
+    const contenedorCarrito = document.getElementById('contenedor-carrito');
+    contenedorCarrito.innerHTML = '<h2>Carrito:</h2>';
+    carrito.forEach(producto => {
+        contenedorCarrito.innerHTML += `
+            <p>${producto.nombre} \t $${producto.precio}</p>
+        `;
+    });
+}
+
+
+
+document.addEventListener('DOMContentLoaded', mostrarProductos);
+
+contenedorProductos.addEventListener('click', agregarAlCarrito);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*const contenedorProductos = document.getElementById('contenedor-productos');
 
 const Productos = [
     { id: 1, nombre: "whisky", precio: 4500, emoji: '🥃' },
@@ -125,7 +231,7 @@ function mostrarProductos() {
     const agregarAlCarrito = (e) => {
     if (e.target.classList.contains('agregar')) {
         const id = e.target.id;
-        const producto = productos.find(producto => producto.id == id);
+        const producto = Productos.find(producto => producto.id == id);
         carrito.push(producto);
         mostrarcarrito();
     }
@@ -142,4 +248,4 @@ const mostrarCarrito = () => {
 
 document.addEventListener('DOMContentLoaded', mostrarProductos);
 
-document.addEventListener('click', agregarAlCarrito);
+contenedorProductos.addEventListener('click', agregarAlCarrito);*/
